@@ -12,7 +12,7 @@
 <!--        <link rel="icon" type="image/png" href="{{ MEDIA_URL }}img/favicon.png" />-->
     </head>
 <body>
-    <div id="wrapper" class="{{ LANGUAGE_CODE }}"></div>
+    <div id="root" class="{{ LANGUAGE_CODE }}"></div>
     <div id="modal-wrapper" class="{{ LANGUAGE_CODE }}"></div>
 <script type="text/javascript">
   window.app = {
@@ -22,7 +22,7 @@
 </script>
 <!-- <script src="{{ STATIC_URL }}scripts/i18n/{{ LANGUAGE_CODE }}/djangojs.js"></script> -->
 {% render_bundle 'runtime' 'js' %}
-{% render_bundle 'appDTable' 'js' %}
+{% render_bundle 'appDocTree' 'js' %}
 </body>
 </html>
 

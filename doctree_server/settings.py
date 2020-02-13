@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'webpack_loader',
 ]
 
 MIDDLEWARE = [
@@ -125,6 +126,6 @@ STATIC_URL = '/static/'
 WEBPACK_LOADER = {
     'DEFAULT': {
         'BUNDLE_DIR_NAME': 'frontend/',
-        'STATS_FILE': os.path.join(BASE_DIR, 'frontend/webpack-stats.pro.json'),
+        'STATS_FILE': os.path.join(BASE_DIR, 'frontend/webpack-stats.dev.json'),
     }
 }
