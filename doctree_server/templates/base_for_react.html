@@ -1,0 +1,28 @@
+{% load render_bundle from webpack_loader %}
+
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE }}">
+    <head>
+    <script>
+    </script>
+        <title>DocTree</title>
+        <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+        <meta name="keywords" content="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!--        <link rel="icon" type="image/png" href="{{ MEDIA_URL }}img/favicon.png" />-->
+    </head>
+<body>
+    <div id="wrapper" class="{{ LANGUAGE_CODE }}"></div>
+    <div id="modal-wrapper" class="{{ LANGUAGE_CODE }}"></div>
+<script type="text/javascript">
+  window.app = {
+    config: {
+    }
+  }
+</script>
+<!-- <script src="{{ STATIC_URL }}scripts/i18n/{{ LANGUAGE_CODE }}/djangojs.js"></script> -->
+{% render_bundle 'runtime' 'js' %}
+{% render_bundle 'appDTable' 'js' %}
+</body>
+</html>
+
