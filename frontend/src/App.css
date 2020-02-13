@@ -1,0 +1,12 @@
+.node {
+  margin-left: 10px;
+  background-color: #ababab;
+}
+
+.leaf {
+  margin-left: 10px;
+}
+
+.display-none {
+  display: none;
+}
