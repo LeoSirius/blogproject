@@ -1,0 +1,48 @@
+.top-bar {
+  height: 50px;
+  background-color: #adcdad;
+}
+
+.main-content {
+
+}
+
+.column {
+  vertical-align: top;
+  display: inline-block;
+  /* float: left; */
+  position: relative;
+}
+
+.tree, .nav-bar {
+  background-color: red;
+  width: 25%;
+}
+
+.doc {
+  background-color: blue;
+  width: 50%;
+}
+
+.footer {
+  height: 50px;
+  background-color: #adcdad;
+}
+
+
+.tree {
+  background-color: aqua;
+}
+
+.node {
+  margin-left: 10px;
+  background-color: #ababab;
+}
+
+.leaf {
+  margin-left: 10px;
+}
+
+.display-none {
+  display: none;
+}

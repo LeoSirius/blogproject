@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'webpack_loader',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -126,6 +127,12 @@ STATIC_URL = '/static/'
 WEBPACK_LOADER = {
     'DEFAULT': {
         'BUNDLE_DIR_NAME': 'frontend/',
-        'STATS_FILE': os.path.join(BASE_DIR, 'frontend/webpack-stats.dev.json'),
+        'STATS_FILE': os.path.join(BASE_DIR, 'frontend/webpack-stats.pro.json'),
     }
 }
+
+
+try:
+    from doctree_server.local_settings import *
+except ImportError as e:
+    pass
