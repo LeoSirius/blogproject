@@ -14,7 +14,7 @@
   position: relative;
 }
 
-.tree, .nav-bar {
+.left-tree, .right-nav-bar {
   background-color: red;
   width: 25%;
 }
