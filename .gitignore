@@ -3,6 +3,8 @@
 # dependencies
 frontend/node_modules
 frontend/build
+frontend/webpack-stats.dev.json
+frontend/webpack-stats.pro.json
 
 *.pyc
 db.sqlite3
