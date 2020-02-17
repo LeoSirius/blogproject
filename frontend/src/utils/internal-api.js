@@ -13,6 +13,11 @@ class InternalAPI {
     return this.req.get(url);
   }
 
+  getFileContentByPath(path) {
+    const url = '/api/doc-content/' + encodeURIComponent(path) + '/';
+    return this.req.get(url);
+  }
+
 }
 
 let internalAPI = new InternalAPI();

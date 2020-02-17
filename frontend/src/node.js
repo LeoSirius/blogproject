@@ -19,12 +19,11 @@ class Node extends React.Component {
   render() {
     let { node } = this.props;
     let { isDisplayChildren } = this.state;
-    console.log(isDisplayChildren)
     return (
       <div className='node' onClick={this.toggleDisplayChildren}>
         {node.name}
         <div className={ isDisplayChildren ? '' :  'display-none'}>
-        {node.children.map((node, index) => {
+        {node.children.map((node) => {
           if (node.hasOwnProperty('children')) {
             return (
               <Node key={node.name} node={node}/>
