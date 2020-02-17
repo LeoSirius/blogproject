@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.urls import path
 
 from doctree_server.views import home_view_for_react, github_callback
-from doctree_server.api import DocTreeView
+from doctree_server.api import DocTreeView, DocContentView
 
 urlpatterns = [
     path('', home_view_for_react),
@@ -12,5 +12,6 @@ urlpatterns = [
 
 
     # api
-    path('api/doctree/', DocTreeView.as_view())
+    path('api/doctree/', DocTreeView.as_view()),
+    path('api/doc-content/<path:path>/', DocContentView.as_view()),
 ]

@@ -1,4 +1,5 @@
 import os
+from urllib.parse import unquote
 
 from django.conf import settings
 
@@ -14,15 +15,17 @@ class DocTreeView(APIView):
     def get(self, request):
         doc_tree = {}
         doc_tree['children'] = []
-        summary_path = os.path.join(settings.DOC_REPO_PATH, 'notes/summary.md')
-        non_leaf_ancestors = []
+        summary_path = os.path.join(settings.DOC_REPO_PATH, 'summary.md')
+        non_leaf_ancestors = []   # store ancestors from root node, e.g. ['编程语言','c','c和指针']
         with open(summary_path, 'r', encoding='utf-8') as f:
             for line in f.readlines():
                 # skip lines which contain only '\n'
                 if len(line) <= 1:
                     continue
+                # skip lines not started with - or *
                 if line.lstrip()[0] not in ['-', '*']:
                     continue
+
                 name = get_name(line)
                 node = {}
                 node['name'] = name
@@ -31,20 +34,21 @@ class DocTreeView(APIView):
 
                 if is_leaf(line):
                     node['path'] = get_path(line)
+
                     if level == 1:
                         doc_tree['children'].append(node)
                         non_leaf_ancestors = [name]
                         continue
+
+                    # let parent_node point to closest ancestor of leaf, i.e. parent of leaf
                     for ancestor in non_leaf_ancestors:
-                        print('ancestor = {}'.format(ancestor))
-                        print('parent_node = {}'.format(parent_node))
                         child_node = find_child_node_in_children_list(parent_node['children'], ancestor)
                         if child_node:
                             parent_node = child_node
-                        else:
-                            parent_node['children'].append(node)
+                    parent_node['children'].append(node)
                 else:
                     node['children'] = []
+
                     if level == 1:
                         doc_tree['children'].append(node)
                         non_leaf_ancestors = [name]
@@ -55,15 +59,23 @@ class DocTreeView(APIView):
                     # not root, add node to its parent
                     parent_node = doc_tree
                     for ancestor in non_leaf_ancestors:
-                        print('ancestor = {}'.format(ancestor))
-                        print('parent_node = {}'.format(parent_node))
                         child_node = find_child_node_in_children_list(parent_node['children'], ancestor)
                         if child_node:
                             parent_node = child_node
                         else:
                             parent_node['children'].append(node)
 
-                print('====')
-        print('doc_tree = {}'.format(doc_tree))
-
         return Response({'doctree': doc_tree})
+
+
+class DocContentView(APIView):
+
+    def get(self, request, path):
+
+        file_path = os.path.join(settings.DOC_REPO_PATH, path)
+        file_path = unquote(file_path)
+        print('file_path = {}'.format(file_path))
+        with open(file_path, 'r', encoding='utf-8') as f:
+            content = f.read()
+
+        return Response({'content': content})

@@ -13,4 +13,4 @@ SERVER_URL = ''
 GITHUB_PAT = ''
 GITHUB_REPO_URL = ''
 
-DOC_REPO_PATH = '/Users/leo/Github'
+DOC_REPO_PATH = '/Users/leo/Github/doctree/notes'
