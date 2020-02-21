@@ -16,6 +16,10 @@ class Node extends React.Component {
     this.setState({isDisplayChildren: !this.state.isDisplayChildren});
   }
 
+  leafNodeClicked = (leafNode) => {
+    this.props.leafNodeClicked(leafNode)
+  }
+
   render() {
     let { node } = this.props;
     let { isDisplayChildren } = this.state;
@@ -26,11 +30,11 @@ class Node extends React.Component {
         {node.children.map((node) => {
           if (node.hasOwnProperty('children')) {
             return (
-              <Node key={node.name} node={node}/>
+              <Node key={node.name} node={node} leafNodeClicked={this.leafNodeClicked}/>
             )
           } else {
             return (
-              <Leaf key={node.name} leaf={node}/>
+              <Leaf key={node.name} leaf={node} leafNodeClicked={this.leafNodeClicked}/>
             )
           }
         })}

@@ -9,6 +9,7 @@ class Leaf extends React.Component {
 
   handleClick = (e) => {
     e.stopPropagation();
+    this.props.leafNodeClicked(this.props.leaf);
   }
 
   render() {

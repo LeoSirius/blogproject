@@ -11,16 +11,22 @@ class LeftTree extends React.Component {
     }
   }
 
+  leafNodeClicked = (leafNode) => {
+    console.log('in tree leaNode = ')
+    console.log(leafNode)
+    this.props.leafNodeClicked(leafNode);
+  }
+
   renderTree() {
     let { tree } = this.props;
     return tree.map(node => {
       if (node.hasOwnProperty('children')) {
         return (
-          <Node key={node.name} node={node}/>
+          <Node key={node.name} node={node} leafNodeClicked={this.leafNodeClicked}/>
         );
       } else {
         return (
-          <Leaf key={node.name} leaf={node}/>
+          <Leaf key={node.name} leaf={node} leafNodeClicked={this.leafNodeClicked}/>
         )
       }
     })
