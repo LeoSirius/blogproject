@@ -5,9 +5,10 @@ from django.conf import settings
 
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from rest_framework import status
 
-from doctree_server.utils import *
-
+from doctree_server.utils import api_err, get_path, get_level, get_name, \
+    is_leaf, find_child_node_in_children_list
 
 
 class DocTreeView(APIView):
@@ -72,9 +73,13 @@ class DocContentView(APIView):
 
     def get(self, request, path):
 
+        # params check
         file_path = os.path.join(settings.DOC_REPO_PATH, path)
         file_path = unquote(file_path)
-        print('file_path = {}'.format(file_path))
+        if not os.path.exists(file_path):
+            error_msg = 'file "{}" not found.'.format(file_path)
+            return api_err(status.HTTP_500_INTERNAL_SERVER_ERROR, error_msg)
+
         with open(file_path, 'r', encoding='utf-8') as f:
             content = f.read()
 
