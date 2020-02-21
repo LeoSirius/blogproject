@@ -4,7 +4,7 @@ import LeftTree from './left-tree';
 import internalAPI from './utils/internal-api';
 
 import './css/app.css';
-import './css/github.css';
+import './css/github-markdown.css';
 
 class App extends React.Component {
   constructor(props) {
@@ -46,10 +46,12 @@ class App extends React.Component {
       <div>
         <div className="top-bar"></div>
         <div className="main-content">
-          <LeftTree
-            tree={tree}
-            leafNodeClicked={this.leafNodeClicked}
-          />
+          <div className="column left-tree">
+            <LeftTree
+              tree={tree}
+              leafNodeClicked={this.leafNodeClicked}
+            />
+          </div>
           <div className="column doc">
             <ReactMarkdown className="markdown-body" source={markdownContent}/>
           </div>

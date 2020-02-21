@@ -35,7 +35,7 @@ class LeftTree extends React.Component {
   render() {
     let { tree } = this.props;
     return (
-      <div className="column left-tree">
+      <div>
         {tree.length >= 1 && this.renderTree()}
       </div>
     )
