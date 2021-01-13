@@ -28,15 +28,17 @@ def gen_triple_name():
 
     try_circle = 0
     while name in name_set:
+
         if try_circle == 0:
             p1 = (p1 + 1) % adj_size
         elif try_circle == 1:
             p2 = (p2 + 1) % job_size
         elif try_circle == 2:
             p3 = (p3 + 1) % loc_size
-        try_circle += 1
+        try_circle = (try_circle + 1) % 3
         name = f'{adjs[p1]} {jobs[p2]} from {locs[p3]}'
 
+    name_set.add(name)
     return name
 
 if __name__ == "__main__":
